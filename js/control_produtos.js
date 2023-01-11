@@ -2,7 +2,7 @@
 const getLocalStorage = () => JSON.parse(localStorage.getItem('db_relacao')) ?? [{ nomeGrupo: "", idsProdutos: [] }]
 const setLocalStorage = (dbRelacao) => localStorage.setItem("db_relacao", JSON.stringify(dbRelacao))
 
-// CRUD 
+// CRUD das relações grupo e produtos.
 const deleteRelacao = (index) => {
     const dbRelacao = readRelacao()
     dbRelacao.splice(index, 1)
@@ -23,6 +23,7 @@ const createRelacao = (relacao) => {
     setLocalStorage(dbRelacao)
 }
 
+// Regras de relação para associar produtos aos grupos e já atualizar no local storage.
 window.onload = () => {
     loadGrupos()
 }

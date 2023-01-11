@@ -8,6 +8,7 @@ const setLocalStorageR = (dbRelacao) => localStorage.setItem("db_relacao", JSON.
 
 var auxNomeGrupo = []
 
+// CRUD dos Grupos.
 const updateRelacao = (index, relacao) => {
     const dbRelacao = getLocalStorageR()
     dbRelacao[index] = relacao
@@ -28,7 +29,6 @@ const deleteRelacao = (nomeGrupoDelete) => {
     setLocalStorageR(dbRelacao)
 }
 
-// CRUD
 const deleteGrupo = (index) => {
     const dbGrupo = readGrupo()
     dbGrupo.splice(index, 1)
@@ -49,6 +49,7 @@ const createGrupo = (grupo) => {
     setLocalStorage(dbGrupo)
 }
 
+// Relação com os layout.
 const isValidFields = () => {
     return document.getElementById('form').reportValidity()
 }
@@ -154,7 +155,6 @@ const editDelete = (event) => {
 updateTable()
 
 // Eventos
-
 document.getElementById('salvar')
     .addEventListener('click', saveGrupo)
 

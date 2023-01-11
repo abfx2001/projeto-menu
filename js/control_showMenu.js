@@ -10,7 +10,7 @@ const getLocalStorageM = () => JSON.parse(localStorage.getItem('db_relacao')) ??
 window.onload = () => {
     reloadMenu()
 }
-
+//mostra os grupos e produtos relacionados na página princípal do Menu
 const reloadMenu = () => {
     getLocalStorageM().map(function (e) {
         if (e.nomeGrupo !== '') {
@@ -33,6 +33,7 @@ const reloadMenu = () => {
     reloadMenuProduto()
 }
 
+//adiciona os modais e demonstrativos dos produtos. 
 const reloadMenuProduto = () => {
     axios.request(options).then(function (response) {
         const apiContent = response.data.body

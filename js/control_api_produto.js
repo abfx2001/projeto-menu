@@ -7,6 +7,7 @@ const options = {
 
 const getLocalStoragej = () => JSON.parse(localStorage.getItem('db_relacao')) ?? [{ nomeGrupo: "", idsProdutos: [] }]
 
+//traz para a página da realação dos produtos os nome e códigos internos dos produtos vindos da API já com os produtos marcados da relação.
 const loadIds = () => {
     let selectedGroup = document.getElementsByClassName('active')[0].innerHTML
     getLocalStoragej().map(function (e) {
@@ -58,12 +59,13 @@ const loadIds = () => {
             });
         }
         if (e.idsProdutos == '') {
-            testefuncao()
+            loadGrupoVazio()
         }
     })
 }
 
-const testefuncao = () => {
+//traz uma a lista dos produtos sem marcação, pois ainda não tem uma relação.
+const loadGrupoVazio = () => {
     axios.request(options).then(function (response) {
         var containerProdutosB = document.getElementById('showProdutos')
         containerProdutosB.innerHTML = ''
@@ -90,146 +92,3 @@ const testefuncao = () => {
     })
     selecaoProduto()
 }
-
-
-
-
-
-
-
-
-
-// const loadIds = () => {
-//     let selectedGroup = document.getElementsByClassName('active')[0].innerHTML
-//     getLocalStoragej().map(function (e) {
-//         if (e.nomeGrupo == selectedGroup) {
-//             for (var i = 0; i < getLocalStoragej().length; i++) {
-//                 if (getLocalStoragej()[i].nomeGrupo === selectedGroup) {
-//                     var auxIds = getLocalStoragej()[i].idsProdutos
-//                     axios.request(options).then(function (response) {
-//                         loadProdutos = () => {
-//                             var containerProdutosa = document.getElementById('showProdutos');
-//                             containerProdutosa.innerHTML = ''
-//                             response.data.body.map((val) => {
-//                                 //aqui é para trazer já marcado os produtos da relaçao de cada grupo
-//                                 let isselected = ''
-
-//                                 // if (val.ID_PRODUTO == '-999') {
-//                                 //     isselected = 'checked'
-//                                 // }
-//                                 for (var j = 0; j < auxIds.length; j++) {
-//                                     if (val.ID_PRODUTO == auxIds[j]) {
-//                                         isselected = 'checked'
-//                                     }
-
-//                                 }
-//                                 containerProdutosa.innerHTML += `
-//                                 <div class="border border-1 mb-1 rounded">
-//                                     <div class="form-check p-1 justify-content-start">
-//                                         <input class="form-check-input m-1" type="checkbox" value="`+ val.ID_PRODUTO + `" id="` + val.ID_PRODUTO + `" ` + isselected + `>
-//                                         <label class="form-check-label ms-1 d-flex justify-content-between" for="`+ val.ID_PRODUTO + `">
-//                                             <div>
-//                                                 `+ val.DESCRICAO + `
-//                                             </div>
-//                                             <div>
-//                                                 Cod. `+ val.ID_PRODUTO + `
-//                                             </div>
-//                                         </label>
-//                                     </div>
-//                                 </div>
-//                                 `;
-//                                 // mostra os produtos resgatados da API
-//                             })
-//                         }
-//                         //loadGrupos()
-//                         loadProdutos()
-//                         //selecaoProduto()
-
-//                     }).catch(function (error) {
-//                         console.error(error)
-//                     });
-//                 } else {
-//                     axios.request(options).then(function (response) {
-//                         loadProdutos = () => {
-//                             var containerProdutos = document.getElementById('showProdutos');
-//                             containerProdutos.innerHTML = ''
-//                             response.data.body.map((val) => {
-//                                 //aqui é para trazer já marcado os produtos da relaçao de cada grupo
-//                                 let isselected = ''
-//                                 // mostra os produtos resgatados da API
-//                                 containerProdutos.innerHTML += `
-//                                 <div class="border border-1 mb-1 rounded">
-//                                     <div class="form-check p-1 justify-content-start">
-//                                         <input class="form-check-input m-1" type="checkbox" value="`+ val.ID_PRODUTO + `" id="` + val.ID_PRODUTO + `" ` + isselected + `>
-//                                         <label class="form-check-label ms-1 d-flex justify-content-between" for="`+ val.ID_PRODUTO + `">
-//                                             <div>
-//                                                 `+ val.DESCRICAO + `
-//                                             </div>
-//                                             <div>
-//                                                 Cod. `+ val.ID_PRODUTO + `
-//                                             </div>
-//                                         </label>
-//                                     </div>
-//                                 </div>
-//                                 `;
-//                             })
-//                         }
-//                         //loadGrupos()
-//                         loadProdutos()
-//                         //selecaoProduto()
-
-//                     }).catch(function (error) {
-//                         console.error(error)
-//                     });
-//                 }
-//             }
-//         }
-//     })
-
-
-// }
-
-// getLocalStoragej().map(function (e) {
-//     //console.log(e.idsProdutos)
-//     for (var i = 0; i < getLocalStoragej().length + 1; i++) {
-//         console.log(e.idsProdutos[i])
-//         //console.log(selection)
-//     }
-// })
-
-
-// axios.request(options).then(function (response) {
-//     loadProdutos = () => {
-//         var containerProdutos = document.getElementById('showProdutos');
-//         response.data.body.map((val) => {
-//             //aqui é para trazer já marcado os produtos da relaçao de cada grupo
-//             let isselected = ''
-
-//             // if (val.ID_PRODUTO == '-999') {
-//             //     isselected = 'checked'
-//             // }
-//             // mostra os produtos resgatados da API
-//             containerProdutos.innerHTML += `
-//             <div class="border border-1 mb-1 rounded">
-//                 <div class="form-check p-1 justify-content-start">
-//                     <input class="form-check-input m-1" type="checkbox" value="`+ val.ID_PRODUTO + `" id="` + val.ID_PRODUTO + `" ` + isselected + `>
-//                     <label class="form-check-label ms-1 d-flex justify-content-between" for="`+ val.ID_PRODUTO + `">
-//                         <div>
-//                             `+ val.DESCRICAO + `
-//                         </div>
-//                         <div>
-//                             Cod. `+ val.ID_PRODUTO + `
-//                         </div>
-//                     </label>
-//                 </div>
-//             </div>
-//             `;
-//         })
-//     }
-//     //loadGrupos()
-//     loadProdutos()
-//     //selecaoProduto()
-
-// }).catch(function (error) {
-//     console.error(error)
-// });
