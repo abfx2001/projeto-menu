@@ -17,12 +17,12 @@ const reloadMenu = () => {
             var tabsGrupos = document.getElementById('myTab')
             tabsGrupos.innerHTML += `
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="categoria-2" data-bs-toggle="tab" data-bs-target="#tab-`+ e.nomeGrupo + `" type="button" role="tab">` + e.nomeGrupo + `</button>
+                <button class="nav-link" id="categoria-2" data-bs-toggle="tab" data-bs-target="#tab-`+ e.nomeGrupo.replace(/\s/g, '') + `" type="button" role="tab">` + e.nomeGrupo + `</button>
             </li>
             `
             var tabGruposContent = document.getElementById('myTabContent')
             tabGruposContent.innerHTML += `
-            <div class="tab-pane fade show " id="tab-`+ e.nomeGrupo + `" role="tabpanel" tabindex="">
+            <div class="tab-pane fade show " id="tab-`+ e.nomeGrupo.replace(/\s/g, '') + `" role="tabpanel" tabindex="">
                 <div class="alert-scroll" id="`+ e.nomeGrupo + `">
                 </div>
             </div>
@@ -40,9 +40,9 @@ const reloadMenuProduto = () => {
         getLocalStorageM().map(function (e) {
             var produtosTabsContent = document.getElementById(e.nomeGrupo)
             for (var i = 0; i < e.idsProdutos.length; i++) {
-                var filtrado = apiContent.filter(function (obj) { return obj.ID_PRODUTO == e.idsProdutos[i]; })
+                var filtrado = apiContent.filter(function (obj) { return obj.ID_PRODUTO == e.idsProdutos[i] })
                 produtosTabsContent.innerHTML += `
-                <a data-bs-toggle="modal" data-bs-target="#Modal`+ e.idsProdutos[i] + `` + e.nomeGrupo + `">
+                <a data-bs-toggle="modal" data-bs-target="#Modal`+ e.idsProdutos[i] + `` + e.nomeGrupo.replace(/\s/g, '') + `">
                     <div class="alert alert-white border mb-1 d-flex justify-content-between" role="alert">
                         <div>
                             `+ filtrado[0].DESCRICAO + `
@@ -52,7 +52,7 @@ const reloadMenuProduto = () => {
                         </div>
                     </div>
                 </a>
-                <div class="modal fade" id="Modal`+ e.idsProdutos[i] + `` + e.nomeGrupo + `">
+                <div class="modal fade" id="Modal`+ e.idsProdutos[i] + `` + e.nomeGrupo.replace(/\s/g, '') + `">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">

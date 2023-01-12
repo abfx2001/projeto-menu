@@ -16,5 +16,9 @@
 
 ### _Config do ambiente:_
 
+> Visual Studio Code, usando a extensão: Live Server.
+
 > Uso de uma extenção que cria um server temporário, para rodar a aplicação,
 >necessário ver como ficaria para rodar em um server próprio, acho que o princípio será o mesmo.
+
+
